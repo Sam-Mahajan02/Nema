@@ -21,12 +21,11 @@
 
 let latitude=0;
 let longitude=0;
-
+let count=0;
 const successCallback = (position) => {
     latitude=+position.coords.latitude; 
     longitude=+position.coords.longitude;
-    writeUserData(1,'sam',latitude,longitude);
-    writeUserData(2,'nema',latitude,longitude);
+    writeUserData(0,latitude,longitude);
     console.log(position.coords.latitude);
     console.log(position.coords.longitude);
   };
@@ -54,10 +53,11 @@ function sendUserLocation(){
 //   });
 // }
 
-function writeUserData(userId, name, latitude,longitude) {
+
+
+function writeUserData(userId, latitude,longitude) {
     const db = getDatabase();
     set(ref(db, 'users/' + userId), {
-      username: name,
       userLatitude: latitude,
       userLongitute : longitude
     });

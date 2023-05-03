@@ -15,17 +15,26 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebas
  };
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-  //  const database= getDatabase(app);
-  //   let userId=1;
-  
-  let userId=1;
+  var data;
+
+
+
+ function fetchData(){
+  let userId=0;
   const dbRef = ref(getDatabase());
   get(child(dbRef, `users/${userId}`)).then((snapshot) => {
     if (snapshot.exists()) {
-      console.log(snapshot.val());
+      data=snapshot.val();
+      console.log(data);
     } else {
       console.log("No data available");
     }
   }).catch((error) => {
     console.error(error);
   });
+ }
+ console.log(data);
+ let getLocationBtn=document.getElementById('getData');
+ getLocationBtn.addEventListener("click",fetchData);
+
+ 
