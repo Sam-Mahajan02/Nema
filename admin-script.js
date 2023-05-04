@@ -24,7 +24,11 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebas
   const dbRef = ref(getDatabase());
   get(child(dbRef, `users/${userId}`)).then((snapshot) => {
     if (snapshot.exists()) {
-      data=snapshot.val();
+      let data=snapshot.val();
+      let fetchedLatitude=snapshot.val().userLatitude;
+      let fetchedLongitude=snapshot.val().userLongitute;
+      document.getElementById('latitudeDisplay').innerText=fetchedLatitude;
+      document.getElementById('longitudeDisplay').innerText=fetchedLongitude;
       console.log(data);
     } else {
       console.log("No data available");

@@ -80,9 +80,27 @@ function writeUserData(userId, latitude,longitude) {
 // Call the function to send latitude and longitude data
 // sendLocation(37.7749, -122.4194); // San Francisco, CA
 
-  
-  
+const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+const appendAlert = (message, type) => {
+  const wrapper = document.createElement('div')
+  wrapper.innerHTML = [
+    `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+    `   <div>${message}</div>`,
+    '</div>'
+  ].join('')
 
+  alertPlaceholder.append(wrapper)
+}
+
+const alertTrigger = document.getElementById('sendData')
+if (alertTrigger) {
+  alertTrigger.addEventListener('click', () => {
+    appendAlert('Location sent successfully!', 'success')
+  })
+}
+
+// let closeAlertButton= document.getElementById("closeAlert");
+// closeAlertButton.addEventListener('click',closeAlertFn);
 
 let btnLocation = document.getElementById('sendData');
 
